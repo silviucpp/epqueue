@@ -1,0 +1,6 @@
+/.idea/
+/.rebar/
+/ebin/
+/epqueue_nif.xcodeproj/
+/priv/
+*.iml

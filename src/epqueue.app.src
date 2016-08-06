@@ -1,0 +1,8 @@
+{application, epqueue, [
+    {description, "Erlang Priority Queue"},
+    {vsn, "1"},
+    {registered, []},
+    {applications, [kernel, stdlib]},
+    {mod, {epqueue_app, []}},
+    {env, []}
+]}.
