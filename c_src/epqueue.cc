@@ -200,7 +200,7 @@ ERL_NIF_TERM nif_epqueue_remove(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
         return enif_make_badarg(env);
 
     if(!internal_remove(inst, item))
-        return make_error(env, "item not found");
+        return enif_make_badarg(env);
 
     enif_release_resource(&item);
     return ATOMS.atomOk;
