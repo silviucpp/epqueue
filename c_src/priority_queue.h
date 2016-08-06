@@ -3,7 +3,7 @@
 
 #include "macros.h"
 
-typedef int(*LessFun)(void*, void*);
+typedef bool(*LessFun)(void*, void*);
 typedef void(*UpdatePositionFun)(void*, int);
 
 class PriorityQueue

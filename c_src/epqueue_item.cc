@@ -2,11 +2,11 @@
 #include "epqueue_nif.h"
 #include "macros.h"
 
-int epqueue_item_less(void* ax, void* bx)
+bool epqueue_item_less(void* ax, void* bx)
 {
     queue_item* a = static_cast<queue_item*>(ax);
     queue_item* b = static_cast<queue_item*>(bx);
-    return (a->priority < b->priority ? 1: 0);
+    return a->priority < b->priority;
 }
 
 void epqueue_item_update_pos(void* ax, int pos)
@@ -22,13 +22,13 @@ void epqueue_item_free(ErlNifEnv* env, void* obj)
     enif_release_binary(&item->data);
 }
 
-queue_item* epqueue_item_new(const epqueue_data* data, const ErlNifBinary& bin, int priority)
+queue_item* epqueue_item_new(const epqueue_data* data, const ErlNifBinary& bin, long priority)
 {
     queue_item* item = static_cast<queue_item*>(enif_alloc_resource(data->resPQueueItem, sizeof(queue_item)));
-    
+
     if(item == NULL)
         return NULL;
-    
+
     item->heap_index = -1;
     item->priority = priority;
     item->data = bin;

@@ -8,14 +8,14 @@ struct epqueue_data;
 struct queue_item
 {
     int heap_index;
-    int priority;
+    long priority;
     ErlNifBinary data;
 };
 
 void epqueue_item_update_pos(void* ax, int pos);
-int epqueue_item_less(void* ax, void* bx);
+bool epqueue_item_less(void* ax, void* bx);
 
-queue_item* epqueue_item_new(const epqueue_data* data, const ErlNifBinary& bin, int priority);
+queue_item* epqueue_item_new(const epqueue_data* data, const ErlNifBinary& bin, long priority);
 void epqueue_item_free(ErlNifEnv* env, void* obj);
 
 #endif

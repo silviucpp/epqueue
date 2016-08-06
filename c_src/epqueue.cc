@@ -150,7 +150,7 @@ ERL_NIF_TERM nif_epqueue_insert(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
 
     epqueue* inst;
     ErlNifBinary data_bin;
-    int priority;
+    long priority;
 
     if(!enif_get_resource(env, argv[0], data->resPQueueInstance, (void**) &inst))
         return enif_make_badarg(env);
@@ -158,7 +158,7 @@ ERL_NIF_TERM nif_epqueue_insert(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
     if(!is_owner(env, inst))
         return enif_make_badarg(env);
 
-    if(!enif_get_int(env, argv[2], &priority))
+    if(!enif_get_int64(env, argv[2], &priority))
         return enif_make_badarg(env);
 
     if(!enif_term_to_binary(env, argv[1], &data_bin))
@@ -233,7 +233,7 @@ ERL_NIF_TERM nif_epqueue_pop(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]
     }
 
     enif_release_resource(item);
-    return enif_make_tuple3(env, ATOMS.atomOk, bin_term, enif_make_int(env, item->priority));
+    return enif_make_tuple3(env, ATOMS.atomOk, bin_term, enif_make_int64(env, item->priority));
 }
 
 ERL_NIF_TERM nif_epqueue_peek(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
@@ -260,5 +260,5 @@ ERL_NIF_TERM nif_epqueue_peek(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[
     if(enif_binary_to_term(env, item->data.data, item->data.size, &bin_term, 0) == 0)
         return make_error(env, "failed to decode data");
 
-    return enif_make_tuple3(env, ATOMS.atomOk, bin_term, enif_make_int(env, item->priority));
+    return enif_make_tuple3(env, ATOMS.atomOk, bin_term, enif_make_int64(env, item->priority));
 }
