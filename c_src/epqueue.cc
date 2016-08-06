@@ -193,10 +193,10 @@ ERL_NIF_TERM nif_epqueue_remove(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
         return enif_make_badarg(env);
 
     if(!internal_remove(inst, item))
-        return enif_make_badarg(env);
+        return ATOMS.atomFalse;
 
     enif_release_resource(&item);
-    return ATOMS.atomOk;
+    return ATOMS.atomTrue;
 }
 
 ERL_NIF_TERM nif_epqueue_pop(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])

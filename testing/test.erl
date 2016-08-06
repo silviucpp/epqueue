@@ -32,11 +32,12 @@ test_remove() ->
     {ok, Ref3} = epqueue:insert(Q1, 3, 3),
     {ok, Ref5} = epqueue:insert(Q1, 5, 5),
     {ok, Ref1} = epqueue:insert(Q1, 1, 1),
-    {error, _} = epqueue:remove(Q1, Ref7),
-    ok = epqueue:remove(Q1, Ref5),
-    ok = epqueue:remove(Q1, Ref3),
-    ok = epqueue:remove(Q1, Ref1),
-    ok = epqueue:remove(Q2, Ref7).
+    false = epqueue:remove(Q1, Ref7),
+    true = epqueue:remove(Q1, Ref5),
+    true = epqueue:remove(Q1, Ref3),
+    true = epqueue:remove(Q1, Ref1),
+    true = epqueue:remove(Q2, Ref7),
+    ok.
 
 test_pop() ->
     {ok, Q1} = epqueue:new([]),

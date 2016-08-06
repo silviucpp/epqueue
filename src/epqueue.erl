@@ -26,7 +26,7 @@ insert(QueueRef, Data, Priority) ->
     epqueue_nif:insert(QueueRef, Data, Priority).
 
 -spec(remove(QueueRef::reference(), Ref::reference()) ->
-    {ok, Data::term(), Priority::integer()} | badarg | {error, Reason :: binary()}).
+    boolean() |  badarg | {error, Reason :: binary()}).
 
 remove(QueueRef, Ref) ->
     epqueue_nif:remove(QueueRef, Ref).
