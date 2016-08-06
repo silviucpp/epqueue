@@ -5,12 +5,13 @@
 
 typedef bool(*LessFun)(void*, void*);
 typedef void(*UpdatePositionFun)(void*, int);
+typedef void(*DestroyElementFun)(void*);
 
 class PriorityQueue
 {
 public:
 
-    PriorityQueue(LessFun ls, UpdatePositionFun upd);
+    PriorityQueue(LessFun ls, UpdatePositionFun upd, DestroyElementFun dtor);
     ~PriorityQueue();
 
     bool insert(void* item);
@@ -34,6 +35,7 @@ private:
     void** heap_;
     LessFun less_;
     UpdatePositionFun update_pos_fun_;
+    DestroyElementFun item_dtor_;
 };
 
 #endif

@@ -21,14 +21,7 @@ void nif_epqueue_free(ErlNifEnv* env, void* obj)
     epqueue* qinst = static_cast<epqueue*>(obj);
 
     if(qinst->queue)
-    {
-        //clear all items
-        //@todo: improve this to avoid balancing the heap when we distroy.
-        while (void* item = qinst->queue->pop())
-            enif_release_resource(item);
-
         delete qinst->queue;
-    }
 
     if(qinst->crit)
         delete qinst->crit;
@@ -117,7 +110,7 @@ ERL_NIF_TERM nif_epqueue_new(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]
         qinst->owner_pid = enif_make_pid(env, &self);
     }
 
-    qinst->queue = new PriorityQueue(epqueue_item_less, epqueue_item_update_pos);
+    qinst->queue = new PriorityQueue(epqueue_item_less, epqueue_item_update_pos, enif_release_resource);
 
     ERL_NIF_TERM term = enif_make_resource(env, qinst);
     enif_release_resource(qinst);
