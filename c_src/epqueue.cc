@@ -78,7 +78,7 @@ ERL_NIF_TERM nif_epqueue_new(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]
     if(!enif_is_list(env, argv[0]))
         return enif_make_badarg(env);
 
-    bool use_lock = true;
+    bool use_lock = false;
 
     ERL_NIF_TERM settings_list = argv[0];
     ERL_NIF_TERM head;
