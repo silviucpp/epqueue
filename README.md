@@ -27,8 +27,14 @@ This can be changed if it's required by moving the encoding/decoding or terms in
 
 Compile:
 
-```
+```sh
 rebar compile
+```
+
+or
+
+```sh
+rebar3 compile
 ```
 
 Simple usage:

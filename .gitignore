@@ -4,3 +4,4 @@
 /epqueue_nif.xcodeproj/
 /priv/
 *.iml
+/_build/
