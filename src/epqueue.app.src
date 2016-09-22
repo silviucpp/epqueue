@@ -1,6 +1,6 @@
 {application, epqueue, [
     {description, "Erlang Priority Queue"},
-    {vsn, "1.0.0"},
+    {vsn, "1.0.1"},
     {registered, []},
     {applications, [kernel, stdlib]},
     {env, []}
