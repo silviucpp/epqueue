@@ -66,37 +66,36 @@ In order to run the integrity tests run `make ct` from project root.
 Performance testing
 -----------
 
-From the `test` folder you can use the `benchmark:benchmark_serial(NrElements, MaxPriority, UseLock)` or `benchmark:benchmark_concurrent(NrProcs, NrElements, MaxPriority)` methods to test the performances.
+Results are generated on a MacBook Pro (Intel Core i7 4 cores at 2.5 GHz):
+The `insert overhead` is the time spent to generate `ELEMENTS` random numbers for the priorities,
 
-- `benchmark_serial/3` inserts a number of `NrElements` with priorities from 0 to `MaxPriority` in a queue that use or not a lock.
-- `benchmark_concurrent/3` spawn a number of `NrProcs` processes that will insert a number of `NrElements` with priorities from 0 to `MaxPriority` in a queue that is mandatory to use a lock.
-
-Results on MacBook Pro (Intel Core i7 4 cores at 2.5 GHz):
+- `make bench_serial` inserts a number of `ELEMENTS` with priorities from 0 to `MAX_PRIORITY` in a queue that
+use or not a lock.
 
 ```erl
-benchmark:benchmark_serial(1000000, 1000000, true).
-insert overhead: 252.764 ms insert time: 740.722 ms pop time: 1833.721 ms 
+make bench_serial ELEMENTS=1000000 MAX_PRIORITY=10000000 USE_LOCK=true
+insert overhead: 252.764 ms insert time: 740.722 ms pop time: 1833.721 ms
 
-benchmark:benchmark_serial(1000000, 1000000, false).
-insert overhead: 250.178 ms insert time: 726.999 ms pop time: 1771.064 ms 
+make bench_serial ELEMENTS=1000000 MAX_PRIORITY=10000000 USE_LOCK=false
+insert overhead: 250.178 ms insert time: 726.999 ms pop time: 1771.064 ms
 ```
 
-The overhead is the time spent to generate `NrElements` random numbers for the priorities,
+- `bench_concurrent` spawn a number of `PROCS` processes that will insert a number of `ELEMENTS` with priorities 
+from 0 to `MAX_PRIORITY` in a queue (lock is mandatory).
 
 ```erl
-benchmark:benchmark_concurrent(1, 1000000, 1000000).
-insert overhead: 274.339 ms insert time: 778.185 ms pop time: 1772.712 ms 
+make bench_concurrent PROCS=1 ELEMENTS=1000000 MAX_PRIORITY=10000000
+insert overhead: 274.339 ms insert time: 778.185 ms pop time: 1772.712 ms
 
-benchmark:benchmark_concurrent(2, 1000000, 1000000).
+make bench_concurrent PROCS=2 ELEMENTS=1000000 MAX_PRIORITY=10000000
 insert overhead: 139.748 ms insert time: 2408.561 ms pop time: 4563.286 ms 
 
-benchmark:benchmark_concurrent(3, 1000000, 1000000).
+make bench_concurrent PROCS=3 ELEMENTS=1000000 MAX_PRIORITY=10000000
 insert overhead: 100.252 ms insert time: 3528.367 ms pop time: 4913.981 ms 
 
-benchmark:benchmark_concurrent(4, 1000000, 1000000).
+make bench_concurrent PROCS=4 ELEMENTS=1000000 MAX_PRIORITY=10000000
 insert overhead: 77.775 ms insert time: 3603.385 ms pop time: 5055.776 ms 
 
-benchmark:benchmark_concurrent(20, 1000000, 1000000).
+make bench_concurrent PROCS=20 ELEMENTS=1000000 MAX_PRIORITY=10000000
 insert overhead: 76.704 ms insert time: 3676.474 ms pop time: 5039.594 ms 
 ```
-
