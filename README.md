@@ -58,6 +58,11 @@ API
 - `peek(QueueRef)` - Returns the element `{ok, Data, Priority}` with the lowest priority (the head element) without removing it.
 - `epqueue:size(QueueRef)` - Get the size of a queue.
 
+Tests
+------------
+
+In order to run the integrity tests run `make ct` from project root. 
+
 Performance testing
 -----------
 

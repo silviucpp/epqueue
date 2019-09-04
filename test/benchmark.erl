@@ -1,5 +1,4 @@
 -module(benchmark).
--author("silviu.caragea").
 
 -export([
     benchmark_serial/3,

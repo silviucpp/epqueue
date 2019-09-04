@@ -1,3 +1,6 @@
+REBAR=rebar3
+ROOT_TEST=_build/test/lib
+
 C_SRC_DIR = $(shell pwd)/c_src
 C_SRC_ENV ?= $(C_SRC_DIR)/env.mk
 
@@ -16,6 +19,15 @@ ifneq ($(wildcard $(C_SRC_DIR)),)
 endif
 
 include $(C_SRC_ENV)
+
+ct:
+	mkdir -p log
+	${REBAR} ct --compile_only
+	ct_run  -no_auto_compile \
+			-cover test/cover.spec \
+			-dir $(ROOT_TEST)/epqueue/test \
+			-pa $(ROOT_TEST)/*/ebin \
+			-logdir log
 
 cpplint:
 	cpplint --counting=detailed \

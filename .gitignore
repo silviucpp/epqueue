@@ -5,3 +5,4 @@
 /priv/
 *.iml
 /_build/
+/log/

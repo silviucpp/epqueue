@@ -1,7 +1,8 @@
 -module(multi_spawn).
--author("silviu.caragea").
 
--export([do_work/2]).
+-export([
+    do_work/2
+]).
 
 do_work(Fun, Count) ->
     process_flag(trap_exit, true),
