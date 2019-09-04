@@ -6,3 +6,4 @@
 *.iml
 /_build/
 /log/
+/cppcheck_results.xml

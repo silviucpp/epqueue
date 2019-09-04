@@ -35,5 +35,5 @@ ifeq ($(UNAME_SYS), darwin)
 				-Wl,-U,_enif_mutex_unlock
 endif
 
-CXXFLAGS+=  -g -Wextra -Werror -Wno-missing-field-initializers -fno-rtti -fno-exceptions -Wno-ignored-qualifiers
+CXXFLAGS+=  -g -Wextra -Werror -Wno-missing-field-initializers -fno-rtti -fno-exceptions -Wno-ignored-qualifiers -std=c++11
 LDFLAGS +=  -lstdc++
