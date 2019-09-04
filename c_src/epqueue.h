@@ -1,5 +1,5 @@
-#ifndef EPQUEUE_C_SRC_EZLIB_H_
-#define EPQUEUE_C_SRC_EZLIB_H_
+#ifndef C_SRC_EPQUEUE_H_
+#define C_SRC_EPQUEUE_H_
 
 #include "erl_nif.h"
 
@@ -11,4 +11,4 @@ ERL_NIF_TERM nif_epqueue_remove(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
 ERL_NIF_TERM nif_epqueue_pop(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]);
 ERL_NIF_TERM nif_epqueue_peek(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]);
 
-#endif
+#endif  // C_SRC_EPQUEUE_H_

@@ -1,5 +1,5 @@
-#ifndef EPQUEUE_C_SRC_PRIORITY_EPQUEUE_ITEM_H_
-#define EPQUEUE_C_SRC_PRIORITY_EPQUEUE_ITEM_H_
+#ifndef C_SRC_EPQUEUE_ITEM_H_
+#define C_SRC_EPQUEUE_ITEM_H_
 
 #include "erl_nif.h"
 
@@ -18,4 +18,4 @@ bool epqueue_item_less(void* ax, void* bx);
 queue_item* epqueue_item_new(const epqueue_data* data, const ErlNifBinary& bin, long priority);
 void epqueue_item_free(ErlNifEnv* env, void* obj);
 
-#endif
+#endif  // C_SRC_EPQUEUE_ITEM_H_

@@ -1,5 +1,5 @@
-#ifndef EPQUEUE_C_SRC_EZLIB_NIF_H_
-#define EPQUEUE_C_SRC_EZLIB_NIF_H_
+#ifndef C_SRC_EPQUEUE_NIF_H_
+#define C_SRC_EPQUEUE_NIF_H_
 
 #include "erl_nif.h"
 
@@ -10,7 +10,7 @@ struct atoms
     ERL_NIF_TERM atomTrue;
     ERL_NIF_TERM atomFalse;
     ERL_NIF_TERM atomUndefined;
-    
+
     ERL_NIF_TERM atomGlobalLock;
 };
 
@@ -22,4 +22,4 @@ struct epqueue_data
 
 extern atoms ATOMS;
 
-#endif
+#endif  // C_SRC_EPQUEUE_NIF_H_

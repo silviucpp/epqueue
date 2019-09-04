@@ -1,5 +1,5 @@
-#ifndef EPQUEUE_C_SRC_CRITICAL_SECTION_H_
-#define EPQUEUE_C_SRC_CRITICAL_SECTION_H_
+#ifndef C_SRC_CRITICAL_SECTION_H_
+#define C_SRC_CRITICAL_SECTION_H_
 
 #include "erl_nif.h"
 #include "macros.h"
@@ -42,8 +42,8 @@ public:
 
 private:
 
-    DISALLOW_COPY_AND_ASSIGN(EnifCriticalSection);
     ErlNifMutex *mutex_;
+    DISALLOW_COPY_AND_ASSIGN(EnifCriticalSection);
 };
 
 class CritScope
@@ -55,8 +55,8 @@ public:
 
 private:
 
-    DISALLOW_COPY_AND_ASSIGN(CritScope);
     CriticalSection *pcrit_;
+    DISALLOW_COPY_AND_ASSIGN(CritScope);
 };
 
-#endif /* critical_section_h */
+#endif  // C_SRC_CRITICAL_SECTION_H_

@@ -1,5 +1,5 @@
-#ifndef EPQUEUE_C_SRC_PRIORITY_QUEUE_H_
-#define EPQUEUE_C_SRC_PRIORITY_QUEUE_H_
+#ifndef C_SRC_PRIORITY_QUEUE_H_
+#define C_SRC_PRIORITY_QUEUE_H_
 
 #include "macros.h"
 
@@ -23,10 +23,8 @@ public:
 
 private:
 
-    DISALLOW_COPY_AND_ASSIGN(PriorityQueue);
-
     inline void set(int pos, void* item);
-    inline void swap(int pos1, int pos2);
+    inline void pos_swap(int pos1, int pos2);
     void bubble_down(int pos);
     void bubble_up(int pos);
 
@@ -36,6 +34,8 @@ private:
     LessFun less_;
     UpdatePositionFun update_pos_fun_;
     DestroyElementFun item_dtor_;
+
+    DISALLOW_COPY_AND_ASSIGN(PriorityQueue);
 };
 
-#endif
+#endif  // C_SRC_PRIORITY_QUEUE_H_

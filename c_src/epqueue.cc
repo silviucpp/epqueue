@@ -125,7 +125,7 @@ ERL_NIF_TERM nif_epqueue_size(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[
 
     epqueue* inst = NULL;
 
-    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, (void**) &inst))
+    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, reinterpret_cast<void**>(&inst)))
         return enif_make_badarg(env);
 
     if(!is_owner(env, inst))
@@ -145,7 +145,7 @@ ERL_NIF_TERM nif_epqueue_insert(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
     ErlNifBinary data_bin;
     long priority;
 
-    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, (void**) &inst))
+    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, reinterpret_cast<void**>(&inst)))
         return enif_make_badarg(env);
 
     if(!is_owner(env, inst))
@@ -183,13 +183,13 @@ ERL_NIF_TERM nif_epqueue_remove(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
     epqueue* inst = NULL;
     queue_item* item = NULL;
 
-    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, (void**) &inst))
+    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, reinterpret_cast<void**>(&inst)))
         return enif_make_badarg(env);
 
     if(!is_owner(env, inst))
         return enif_make_badarg(env);
 
-    if(!enif_get_resource(env, argv[1], data->resPQueueItem, (void**) &item))
+    if(!enif_get_resource(env, argv[1], data->resPQueueItem, reinterpret_cast<void**>(&item)))
         return enif_make_badarg(env);
 
     if(!internal_remove(inst, item))
@@ -206,7 +206,7 @@ ERL_NIF_TERM nif_epqueue_pop(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]
     epqueue_data* data = static_cast<epqueue_data*>(enif_priv_data(env));
     epqueue* inst = NULL;
 
-    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, (void**) &inst))
+    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, reinterpret_cast<void**>(&inst)))
         return enif_make_badarg(env);
 
     if(!is_owner(env, inst))
@@ -236,7 +236,7 @@ ERL_NIF_TERM nif_epqueue_peek(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[
     epqueue_data* data = static_cast<epqueue_data*>(enif_priv_data(env));
     epqueue* inst = NULL;
 
-    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, (void**) &inst))
+    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, reinterpret_cast<void**>(&inst)))
         return enif_make_badarg(env);
 
     if(!is_owner(env, inst))

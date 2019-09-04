@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-//Algorithm described at : http://robin-thomas.github.io/min-heap/
+// Algorithm described at : http://robin-thomas.github.io/min-heap/
 
 #define left(x) 2 * x + 1
 #define right(x) 2 * x + 2
@@ -37,7 +37,7 @@ bool PriorityQueue::insert(void* item)
     if (length_ == capacity_)
     {
         int new_capacity = (length_+1) * 2;
-        void** new_heap = (void**) enif_alloc(sizeof(void*) * new_capacity);
+        void** new_heap = reinterpret_cast<void**>(enif_alloc(sizeof(void*) * new_capacity));
 
         if (!new_heap)
             return false;
@@ -82,7 +82,7 @@ void* PriorityQueue::remove(int pos)
     else
         bubble_down(pos);
 
-    //@todo: resize down the heap in case we have a lot of empty slots
+    // todo: resize down the heap in case we have a lot of empty slots
 
     update_pos_fun_(item, -1);
     return item;
@@ -96,7 +96,7 @@ void* PriorityQueue::peek()
     return heap_[0];
 }
 
-//private
+// private
 
 void PriorityQueue::set(int pos, void* item)
 {
@@ -104,7 +104,7 @@ void PriorityQueue::set(int pos, void* item)
     update_pos_fun_(item, pos);
 }
 
-void PriorityQueue::swap(int pos1, int pos2)
+void PriorityQueue::pos_swap(int pos1, int pos2)
 {
     void* tmp = heap_[pos1];
     set(pos1, heap_[pos2]);
@@ -120,7 +120,7 @@ void PriorityQueue::bubble_down(int pos)
         if (pos == 0 || less(parent, pos))
             return;
 
-        swap(pos, parent);
+        pos_swap(pos, parent);
         pos = parent;
     }
 }
@@ -142,7 +142,7 @@ void PriorityQueue::bubble_up(int pos)
         if (smallest == pos)
             return;
 
-        swap(pos, smallest);
+        pos_swap(pos, smallest);
         pos = smallest;
     }
 }
