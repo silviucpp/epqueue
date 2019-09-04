@@ -1,44 +1,60 @@
 -module(epqueue).
--author("silviu.caragea").
 
--export([new/0, new/1, size/1, insert/3, remove/2, pop/1, peek/1]).
+-export([
+    new/0,
+    new/1,
+    size/1,
+    insert/3,
+    remove/2,
+    pop/1,
+    peek/1
+]).
 
+-type error() :: badarg | {error, binary()}.
+-type queue_option() :: {global_lock, boolean()}.
+-type priority() :: non_neg_integer().
+-type data() :: any().
+-type queue_ref() :: reference().
+-type data_ref() :: reference().
 
--spec(new() -> {ok, QueueRef::reference()} | badarg | {error, Reason :: binary()}).
+-spec new() ->
+    {ok, queue_ref()} | error().
 
 new() ->
     epqueue_nif:new([]).
 
--spec(new(Options::list()) -> {ok, QueueRef :: reference()} | badarg | {error, Reason :: binary()}).
+-spec new([queue_option()]) ->
+    {ok, queue_ref()} | error().
 
 new(Options) ->
     epqueue_nif:new(Options).
 
--spec(size(QueueRef::reference()) -> badarg | integer()).
+-spec size(queue_ref()) ->
+    non_neg_integer() | badarg.
 
 size(QueueRef) ->
     epqueue_nif:size(QueueRef).
 
--spec(insert(QueueRef::reference(), Data::term(), Priority::integer()) ->
-    {ok, ItemRef :: reference()} | badarg | {error, Reason :: binary()}).
+-spec insert(queue_ref(), data(), priority()) ->
+    {ok, data_ref()} | error().
 
 insert(QueueRef, Data, Priority) ->
     epqueue_nif:insert(QueueRef, Data, Priority).
 
--spec(remove(QueueRef::reference(), Ref::reference()) ->
-    boolean() |  badarg | {error, Reason :: binary()}).
+-spec remove(queue_ref(), data_ref()) ->
+    boolean() | error().
 
 remove(QueueRef, Ref) ->
     epqueue_nif:remove(QueueRef, Ref).
 
--spec(pop(QueueRef::reference()) ->
-    {ok, Data::term(), Priority::integer()} | badarg | {error, Reason :: binary()}).
+-spec pop(queue_ref()) ->
+    {ok, data(), priority()} | error().
 
 pop(QueueRef) ->
     epqueue_nif:pop(QueueRef).
 
--spec(peek(QueueRef::reference()) ->
-    {ok, Data::term(), Priority::integer()} | badarg | {error, Reason :: binary()}).
+-spec peek(queue_ref()) ->
+    {ok, data(), priority()} | error().
 
 peek(QueueRef) ->
     epqueue_nif:peek(QueueRef).
