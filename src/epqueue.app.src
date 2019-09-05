@@ -2,7 +2,7 @@
     {description, "Erlang Priority Queue"},
     {licenses, ["MIT"]},
     {links,[{"Github","https://github.com/silviucpp/epqueue"}]},
-    {vsn, "1.2.0"},
+    {vsn, "1.2.1"},
     {registered, []},
     {applications, [
         kernel,
@@ -16,6 +16,7 @@
         "rebar.config",
         "rebar.lock",
         "src/*.erl",
+        "src/*.src",
         "c_src/*.h",
         "c_src/*.cc",
         "c_src/Makefile",
