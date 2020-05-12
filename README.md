@@ -4,7 +4,6 @@ epqueue
 [![Build Status](https://travis-ci.org/silviucpp/epqueue.svg?branch=master)](https://travis-ci.org/silviucpp/epqueue)
 ![GitHub](https://img.shields.io/github/license/silviucpp/epqueue)
 ![Hex.pm](https://img.shields.io/hexpm/v/epqueue)
-![Maintenance](https://img.shields.io/maintenance/yes/2019)
 
 A high performant Erlang Priority Queue implemented using a binary heap (using NIF)
 
