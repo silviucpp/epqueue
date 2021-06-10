@@ -1,7 +1,7 @@
 epqueue
 ================
 
-[![Build Status](https://travis-ci.org/silviucpp/epqueue.svg?branch=master)](https://travis-ci.org/silviucpp/epqueue)
+[![Build Status](https://travis-ci.com/silviucpp/epqueue.svg?branch=master)](https://travis-ci.com/silviucpp/epqueue)
 ![GitHub](https://img.shields.io/github/license/silviucpp/epqueue)
 ![Hex.pm](https://img.shields.io/hexpm/v/epqueue)
 
