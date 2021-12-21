@@ -34,7 +34,7 @@ class EnifCriticalSection : public CriticalSection
 {
 public:
 
-    EnifCriticalSection() { mutex_ = enif_mutex_create(NULL);}
+    EnifCriticalSection() { mutex_ = enif_mutex_create(const_cast<char*>("epqueue:critical_section"));}
     ~EnifCriticalSection() {enif_mutex_destroy(mutex_);}
 
     void Enter() override {enif_mutex_lock(mutex_);}
