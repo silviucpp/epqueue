@@ -2,7 +2,7 @@
 #include "epqueue_nif.h"
 #include "macros.h"
 
-#define UINT64_MAX  18446744073709551615ULL
+#include <cstdint>
 
 namespace {
 
@@ -22,7 +22,7 @@ bool epqueue_item_less(void* ax, void* bx)
 {
     queue_item* a = static_cast<queue_item*>(ax);
     queue_item* b = static_cast<queue_item*>(bx);
- 
+
     if(a->priority == b->priority)
         return a->internal_id < b->internal_id;
 
