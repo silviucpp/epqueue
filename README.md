@@ -65,7 +65,7 @@ API
 Tests
 ------------
 
-In order to run the integrity tests run `make ct` from project root. 
+In order to run the integrity tests run `rebar3 eunit` from project root. 
 
 Performance testing
 -----------

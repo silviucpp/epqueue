@@ -10,6 +10,7 @@ struct queue_item
 {
     int32_t heap_index;
     uint64_t priority;
+    uint64_t internal_id;
     ErlNifBinary data;
 };
 

@@ -2,7 +2,7 @@
     {description, "Erlang Priority Queue"},
     {licenses, ["MIT"]},
     {links,[{"Github","https://github.com/silviucpp/epqueue"}]},
-    {vsn, "1.2.4"},
+    {vsn, "1.2.5"},
     {registered, []},
     {applications, [
         kernel,

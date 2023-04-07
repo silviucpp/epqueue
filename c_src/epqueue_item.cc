@@ -2,10 +2,30 @@
 #include "epqueue_nif.h"
 #include "macros.h"
 
+#define UINT64_MAX  18446744073709551615ULL
+
+namespace {
+
+uint64_t next_id()
+{
+    static uint64_t next_id = 1;
+
+    if(next_id == UINT64_MAX)
+        next_id = 1;
+
+    return next_id++;
+}
+
+}
+
 bool epqueue_item_less(void* ax, void* bx)
 {
     queue_item* a = static_cast<queue_item*>(ax);
     queue_item* b = static_cast<queue_item*>(bx);
+ 
+    if(a->priority == b->priority)
+        return a->internal_id < b->internal_id;
+
     return a->priority < b->priority;
 }
 
@@ -29,6 +49,7 @@ queue_item* epqueue_item_new(const epqueue_data* data, const ErlNifBinary& bin, 
     if(item == NULL)
         return NULL;
 
+    item->internal_id = next_id();
     item->heap_index = -1;
     item->priority = priority;
     item->data = bin;
