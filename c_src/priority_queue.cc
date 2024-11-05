@@ -127,6 +127,7 @@ void PriorityQueue::bubble_down(int pos)
 
 int PriorityQueue::rank_r(int target_index, int cur_node_index)
 {
+    // https://rafal.io/posts/heap-rank.html
     if (cur_node_index >= length_)
         return 0;
 

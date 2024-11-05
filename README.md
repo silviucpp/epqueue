@@ -1,7 +1,7 @@
 epqueue
 ================
 
-[![Build Status](https://travis-ci.com/silviucpp/epqueue.svg?branch=master)](https://travis-ci.com/github/silviucpp/epqueue)
+[![Build Status](https://app.travis-ci.com/silviucpp/epqueue.svg?branch=master)](https://travis-ci.com/github/silviucpp/epqueue)
 [![GitHub](https://img.shields.io/github/license/silviucpp/epqueue)](https://github.com/silviucpp/epqueue/blob/master/LICENSE)
 [![Hex.pm](https://img.shields.io/hexpm/v/epqueue)](https://hex.pm/packages/epqueue)
 
@@ -61,6 +61,7 @@ API
 - `pop(QueueRef)` - Removes the element with the lowest priority from the queue (the head element). Returns `{ok, Data, Priority}` in case of success
 - `peek(QueueRef)` - Returns the element `{ok, Data, Priority}` with the lowest priority (the head element) without removing it.
 - `epqueue:size(QueueRef)` - Get the size of a queue.
+- `rank(QueueRef, Ref)` - Get the rank of a specified element from the queue. `Ref` is the one returned by the `epqueue:insert/3` method.
 
 Tests
 ------------
