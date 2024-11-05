@@ -7,7 +7,8 @@
     insert/3,
     remove/2,
     pop/1,
-    peek/1
+    peek/1,
+    rank/2
 ]).
 
 -type error() :: badarg | {error, binary()}.
@@ -58,3 +59,9 @@ pop(QueueRef) ->
 
 peek(QueueRef) ->
     epqueue_nif:peek(QueueRef).
+
+-spec rank(queue_ref(), data_ref()) ->
+    {ok, non_neg_integer()} | error().
+
+rank(QueueRef, Ref) ->
+    epqueue_nif:rank(QueueRef, Ref).

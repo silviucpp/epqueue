@@ -10,7 +10,8 @@
     insert/3,
     remove/2,
     pop/1,
-    peek/1
+    peek/1,
+    rank/2
 ]).
 
 load_nif() ->
@@ -34,6 +35,9 @@ pop(_QueueRef) ->
     ?NOT_LOADED.
 
 peek(_QueueRef) ->
+    ?NOT_LOADED.
+
+rank(_QueueRef, _ItemRef) ->
     ?NOT_LOADED.
 
 % internals

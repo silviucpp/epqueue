@@ -58,3 +58,26 @@ pop_test() ->
     ?assertEqual({ok, 3, 3}, epqueue:pop(Q1)),
     ?assertEqual({ok, 5, 5}, epqueue:pop(Q1)),
     ok.
+
+rank_test() ->
+    {ok, Q1} = epqueue:new([]),
+    {ok, R1} = epqueue:insert(Q1, 3, 1),
+    {ok, R2} = epqueue:insert(Q1, 5, 3),
+    {ok, R3} = epqueue:insert(Q1, 1, 2),
+    {ok, R4} = epqueue:insert(Q1, 1, 1),
+
+    ?assertEqual({ok, 1}, epqueue:rank(Q1, R1)),
+    ?assertEqual({ok, 4}, epqueue:rank(Q1, R2)),
+    ?assertEqual({ok, 3}, epqueue:rank(Q1, R3)),
+    ?assertEqual({ok, 2}, epqueue:rank(Q1, R4)),
+
+    ?assertEqual(true, epqueue:remove(Q1, R1)),
+    ?assertEqual({ok, 1}, epqueue:rank(Q1, R4)),
+
+    ?assertEqual(true, epqueue:remove(Q1, R2)),
+    ?assertEqual(true, epqueue:remove(Q1, R3)),
+
+    ?assertEqual({ok, 1}, epqueue:rank(Q1, R4)),
+    ?assertEqual(true, epqueue:remove(Q1, R4)),
+    ?assertEqual({error, not_found}, epqueue:rank(Q1, R4)),
+    ok.

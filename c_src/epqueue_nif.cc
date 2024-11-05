@@ -10,6 +10,7 @@ const char kAtomTrue[] = "true";
 const char kAtomFalse[] = "false";
 const char kAtomUndefined[] = "undefined";
 const char kAtomGlobalLock[] = "global_lock";
+const char kAtomNotFound[] = "not_found";
 
 atoms ATOMS;
 
@@ -29,6 +30,7 @@ int on_nif_load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info)
     ATOMS.atomTrue = make_atom(env, kAtomTrue);
     ATOMS.atomFalse = make_atom(env, kAtomFalse);
     ATOMS.atomUndefined = make_atom(env, kAtomUndefined);
+    ATOMS.atomNotFound = make_atom(env, kAtomNotFound);
 
     ATOMS.atomGlobalLock = make_atom(env, kAtomGlobalLock);
 
@@ -66,7 +68,8 @@ static ErlNifFunc nif_funcs[] =
     {"remove", 2, nif_epqueue_remove},
     {"pop", 1, nif_epqueue_pop},
     {"peek", 1, nif_epqueue_peek},
-    {"size", 1, nif_epqueue_size}
+    {"size", 1, nif_epqueue_size},
+    {"rank", 2, nif_epqueue_rank},
 };
 
 ERL_NIF_INIT(epqueue_nif, nif_funcs, on_nif_load, NULL, on_nif_upgrade, on_nif_unload)

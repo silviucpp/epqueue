@@ -20,6 +20,7 @@ public:
     void* pop() {return remove(0);}
     void* peek();
     int size() const { return length_;}
+    int rank(int pos) {return rank_r(pos, 0)+1;}
 
 private:
 
@@ -27,6 +28,7 @@ private:
     inline void pos_swap(int pos1, int pos2);
     void bubble_down(int pos);
     void bubble_up(int pos);
+    int rank_r(int x, int cur_node_index);
 
     int capacity_;
     int length_;

@@ -43,6 +43,17 @@ bool internal_remove(epqueue* q, queue_item* item)
     return q->queue->remove(item, item->heap_index);
 }
 
+bool internal_rank(epqueue* q, queue_item* item, int32_t* rank)
+{
+    CritScope ss(q->crit);
+
+    if(item->heap_index == -1)
+        return false;
+
+    *rank = q->queue->rank(item->heap_index);
+    return true;
+}
+
 queue_item* internal_pop(epqueue* q)
 {
     CritScope ss(q->crit);
@@ -254,4 +265,29 @@ ERL_NIF_TERM nif_epqueue_peek(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[
         return make_error(env, "failed to decode data");
 
     return enif_make_tuple3(env, ATOMS.atomOk, bin_term, enif_make_int64(env, item->priority));
+}
+
+ERL_NIF_TERM nif_epqueue_rank(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+{
+    UNUSED(argc);
+
+    epqueue_data* data = static_cast<epqueue_data*>(enif_priv_data(env));
+    epqueue* inst = NULL;
+    queue_item* item = NULL;
+
+    if(!enif_get_resource(env, argv[0], data->resPQueueInstance, reinterpret_cast<void**>(&inst)))
+        return enif_make_badarg(env);
+
+    if(!is_owner(env, inst))
+        return enif_make_badarg(env);
+
+    if(!enif_get_resource(env, argv[1], data->resPQueueItem, reinterpret_cast<void**>(&item)))
+        return enif_make_badarg(env);
+
+    int32_t rank;
+
+    if(!internal_rank(inst, item, &rank))
+        return make_error(env, ATOMS.atomNotFound);
+
+    return enif_make_tuple2(env, ATOMS.atomOk, enif_make_int(env, rank));
 }

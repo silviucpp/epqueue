@@ -10,6 +10,7 @@ struct atoms
     ERL_NIF_TERM atomTrue;
     ERL_NIF_TERM atomFalse;
     ERL_NIF_TERM atomUndefined;
+    ERL_NIF_TERM atomNotFound;
 
     ERL_NIF_TERM atomGlobalLock;
 };

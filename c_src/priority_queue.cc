@@ -125,6 +125,22 @@ void PriorityQueue::bubble_down(int pos)
     }
 }
 
+int PriorityQueue::rank_r(int target_index, int cur_node_index)
+{
+    if (cur_node_index >= length_)
+        return 0;
+
+    // if the current node priority is <= target_node, it is part of the rank count
+    if (less(cur_node_index, target_index))
+    {
+        int left_count = rank_r(target_index, left(cur_node_index));
+        int right_count = rank_r(target_index, right(cur_node_index));
+        return 1 + left_count + right_count;
+    }
+
+    return 0;
+}
+
 void PriorityQueue::bubble_up(int pos)
 {
     while (true)

@@ -25,3 +25,8 @@ ERL_NIF_TERM make_error(ErlNifEnv* env, const char* error)
 {
     return enif_make_tuple2(env, ATOMS.atomError, make_binary(env, error, strlen(error)));
 }
+
+ERL_NIF_TERM make_error(ErlNifEnv* env, ERL_NIF_TERM term)
+{
+    return enif_make_tuple2(env, ATOMS.atomError, term);
+}
